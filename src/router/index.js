@@ -5,6 +5,7 @@ import About from "../views/Team.vue";
 import SignIn from "../views/SignInFlow/SignIn";
 import Request from "../views/SignInFlow/Request";
 import Recover from "../views/SignInFlow/Recover";
+import * as netlifyIndentityWidget from "netlify-identity-widget";
 
 Vue.use(VueRouter);
 
@@ -12,12 +13,18 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/team",
     name: "Team",
-    component: About
+    component: About,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/signIn",
@@ -41,5 +48,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+router.beforeEach((to, from, next) => {
+  const currentUser = netlifyIndentityWidget.currentUser();
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  if (requiresAuth && !currentUser) {
+    next("signIn");
+  }
+  else {
+    next();
+  }
+})
 
 export default router;
