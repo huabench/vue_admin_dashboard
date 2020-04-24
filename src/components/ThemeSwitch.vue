@@ -1,10 +1,13 @@
 <template>
   <div
     class="toggle"
-    :class="{'light-toggle': !isDarkMode, 'dark-toggle': isDarkMode}"
+    :class="[{'big': !isSmall, 'small': isSmall}, {'light-toggle': !isDarkMode, 'dark-toggle': isDarkMode}]"
     v-on:click="toggleDarkMode"
   >
-    <div class="toggle-switch" :class="{'toggle-left': !isDarkMode, 'toggle-right': isDarkMode}">
+    <div
+      class="toggle-switch"
+      :class="[{'big': !isSmall, 'small': isSmall}, {'toggle-left': !isDarkMode, 'toggle-right': isDarkMode}]"
+    >
       <img v-show="!isDarkMode" src="@/assets/sun.svg" />
       <img v-show="isDarkMode" src="@/assets/moon.svg" />
     </div>
@@ -17,24 +20,38 @@ export default {
   computed: {
     isDarkMode() {
       return this.$store.getters.isDarkMode;
+    },
+    isSmall() {
+      return this.size == "small";
     }
   },
   methods: {
     toggleDarkMode() {
       this.$store.commit("toggleDarkMode");
     }
+  },
+  props: {
+    size: String
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .toggle {
-  width: 175px;
   //height: 68px;
-  border-radius: 10px;
   box-sizing: border-box;
-  margin: 50px auto;
   display: flex;
+}
+.toggle.big {
+  width: 175px;
+  margin: 50px auto;
+  border-radius: 10px;
+}
+
+.toggle.small {
+  width: 100px;
+  margin: 0px auto;
+  border-radius: 5px;
 }
 
 .light-toggle {
@@ -52,8 +69,16 @@ export default {
 
 .toggle-switch {
   margin: 2px;
+}
+
+.toggle-switch.big {
   padding: 15px 35px;
   border-radius: 8px;
+}
+
+.toggle-switch.small {
+  padding: 6px 16px;
+  border-radius: 4px;
 }
 
 .toggle-left {

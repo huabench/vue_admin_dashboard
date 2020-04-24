@@ -65,7 +65,7 @@ export default {
       auth
         .login(email, password, true)
         .then(() => {
-          alert("right");
+          //alert("right");
           this.$router.replace("/");
         })
         .catch(error => {
@@ -76,12 +76,15 @@ export default {
   mounted() {
     const params = this.$route.params;
     if (params.userLogout) {
-      alert("true");
+      //alert("true");
       this.hasText = true;
       this.text = "You have logged out!";
     } else if (params.userRecoveredAccount) {
       this.hasText = true;
       this.text = "A recovery email has been sent to " + params.email;
+    } else if (params.userRequestAccount) {
+      this.hasText = true;
+      this.text = `Your request has been sent to the administrator for ${params.email}!`;
     }
   }
 };

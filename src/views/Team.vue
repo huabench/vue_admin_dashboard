@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Header />
     <h2>Team</h2>
     <div class="cards">
       <card
@@ -38,17 +39,19 @@
 
 <script>
 import card from "@/components/Card.vue";
+import Header from "@/components/Header.vue";
 export default {
   name: "Team",
   components: {
-    card
+    card,
+    Header
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
-  margin-left: 25px;
+  margin-left: 0px;
 }
 
 .cards {
@@ -56,6 +59,7 @@ export default {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: space-evenly;
+  margin-left: 25px;
 }
 
 h2 {
