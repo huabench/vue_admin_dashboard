@@ -35,8 +35,8 @@ export default {
         to: "+8613506621948",
         msg: "this is a message from Ben",
       };
-      fetch("http://localhost:9000/sendSMS", {
-        //fetch("/.netlify/functions/sendSMS", {
+      // fetch("http://localhost:9000/sendSMS", {
+      fetch("/.netlify/functions/sendSMS", {
         method: "POST",
         body: JSON.stringify(bodyObject),
       });
