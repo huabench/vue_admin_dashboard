@@ -2,7 +2,7 @@
   <div class="home">
     <Header />
     <div class="container">
-      <button>send msg</button>
+      <button v-on:click="sendMessage">send msg</button>
     </div>
   </div>
 </template>
@@ -18,17 +18,31 @@ export default {
     return {};
   },
   components: {
-    Header
+    Header,
   },
   computed: {
     isDarkMode() {
       return this.$store.getters.isDarkMode;
-    }
+    },
   },
   mounted() {
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
     alert(this.phoneNumber);
-  }
+  },
+  methods: {
+    sendMessage() {
+      console.log("send message");
+      const bodyObject = {
+        to: "+8613506621948",
+        msg: "this is a message from Ben",
+      };
+      //fetch("/.netlify/functions/sendSMS", {
+      fetch("/.netlify/functions/sendSMS", {
+        method: "POST",
+        body: JSON.stringify(bodyObject),
+      });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
