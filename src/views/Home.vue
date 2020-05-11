@@ -32,7 +32,7 @@ export default {
     sendMessage() {
       console.log("send message");
       const bodyObject = {
-        to: "+8613506621948",
+        to: this.phoneNumber,
         msg: "this is a message from Ben",
       };
       // fetch("http://localhost:9000/sendSMS", {
