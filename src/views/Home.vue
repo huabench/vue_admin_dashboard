@@ -27,7 +27,6 @@ export default {
   },
   mounted() {
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
-    alert(this.phoneNumber);
   },
   methods: {
     sendMessage() {
@@ -36,8 +35,8 @@ export default {
         to: "+8613506621948",
         msg: "this is a message from Ben",
       };
-      //fetch("/.netlify/functions/sendSMS", {
-      fetch("/.netlify/functions/sendSMS", {
+      fetch("http://localhost:9000/sendSMS", {
+        //fetch("/.netlify/functions/sendSMS", {
         method: "POST",
         body: JSON.stringify(bodyObject),
       });

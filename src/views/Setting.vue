@@ -2,52 +2,79 @@
   <div>
     <Header />
     <div class="container">
-      <div class="Input" :class="{'dark-input': isDarkMode, 'light-input': !isDarkMode}">
-        <h4 :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}">Change Mode</h4>
-        <p
-          :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}"
-        >Change between light mode and dark mode</p>
+      <div
+        class="Input"
+        :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }"
+      >
+        <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          Change Mode
+        </h4>
+        <p :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          Change between light mode and dark mode
+        </p>
         <ThemeSwitch />
       </div>
-      <div class="Input" :class="{'dark-input': isDarkMode, 'light-input': !isDarkMode}">
-        <h4 :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}">Account Info</h4>
-        <p
-          :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}"
-        >The infomation of your account</p>
+      <div
+        class="Input"
+        :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }"
+      >
+        <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          Account Info
+        </h4>
+        <p :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          The infomation of your account
+        </p>
         <div class="fields">
           <div class="account">
-            ID
+            <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+              ID
+            </h4>
             <div
               class="field field-1"
-              :class="{'dark-field': !isDarkMode, 'light-field': isDarkMode}"
-            >{{this.email}}</div>
+              :class="{ 'dark-field': !isDarkMode, 'light-field': isDarkMode }"
+            >
+              {{ this.email }}
+            </div>
           </div>
           <div class="account">
-            Phone
+            <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+              Phone
+            </h4>
             <div
               class="field field-1"
-              :class="{'dark-field': !isDarkMode, 'light-field': isDarkMode}"
-            >{{getPhoneNumber}}</div>
+              :class="{ 'dark-field': !isDarkMode, 'light-field': isDarkMode }"
+            >
+              {{ getPhoneNumber }}
+            </div>
           </div>
           <div class="account">
-            Device
+            <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+              Device
+            </h4>
             <div
               class="field field-1"
-              :class="{'dark-field': !isDarkMode, 'light-field': isDarkMode}"
-            >{{getDeviceID}}</div>
+              :class="{ 'dark-field': !isDarkMode, 'light-field': isDarkMode }"
+            >
+              {{ getDeviceID }}
+            </div>
           </div>
         </div>
       </div>
-      <div class="Input" :class="{'dark-input': isDarkMode, 'light-input': !isDarkMode}">
-        <h4 :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}">Phone Number</h4>
-        <p
-          :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}"
-        >Messages will be sent to this new number</p>
+      <div
+        class="Input"
+        :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }"
+      >
+        <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          Phone Number
+        </h4>
+        <p :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          Messages will be sent to this new number
+        </p>
         <form class="form" @submit.prevent="savePhoneNumber">
           <input
             type="tel"
             class="field"
-            :class="{'dark-field': !isDarkMode, 'light-field': isDarkMode}"
+            :class="{ 'dark-field': !isDarkMode, 'light-field': isDarkMode }"
             placeholder="Phone Number"
             v-model="inputPhonenumber"
             required
@@ -55,13 +82,20 @@
           <button>Change</button>
         </form>
       </div>
-      <div class="Input" :class="{'dark-input': isDarkMode, 'light-input': !isDarkMode}">
-        <h4 :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}">Device ID</h4>
-        <p :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}">Get data from this device</p>
+      <div
+        class="Input"
+        :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }"
+      >
+        <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          Device ID
+        </h4>
+        <p :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">
+          Get data from this device
+        </p>
         <form class="form" @submit.prevent="saveDeviceID">
           <input
             class="field"
-            :class="{'dark-field': !isDarkMode, 'light-field': isDarkMode}"
+            :class="{ 'dark-field': !isDarkMode, 'light-field': isDarkMode }"
             placeholder="Device ID"
             v-model="inputDeviceID"
             required
@@ -82,7 +116,7 @@ export default {
   name: "Setting",
   components: {
     Header,
-    ThemeSwitch
+    ThemeSwitch,
   },
   computed: {
     isDarkMode() {
@@ -93,17 +127,17 @@ export default {
     },
     getDeviceID() {
       return this.deviceID || "no record";
-    }
+    },
   },
   methods: {
     savePhoneNumber() {
       this.user
         .update({ data: { phone_number: this.inputPhonenumber } })
-        .then(user => {
+        .then((user) => {
           console.log("Updated user %s", user);
           window.location.reload();
         })
-        .catch(error => {
+        .catch((error) => {
           alert("Failed to update user: %o", error);
           throw error;
         });
@@ -112,15 +146,15 @@ export default {
     saveDeviceID() {
       this.user
         .update({ data: { device_id: this.inputDeviceID } })
-        .then(user => {
+        .then((user) => {
           console.log("Updated user %s", user);
           window.location.reload();
         })
-        .catch(error => {
+        .catch((error) => {
           alert("Failed to update user: %o", error);
           throw error;
         });
-    }
+    },
   },
   data() {
     return {
@@ -128,7 +162,7 @@ export default {
       inputDeviceID: null,
       phoneNumber: null,
       deviceID: null,
-      email: null
+      email: null,
     };
   },
   mounted() {
@@ -137,7 +171,7 @@ export default {
     console.log(this.user.user_metadata);
     this.phoneNumber = this.user.user_metadata.phone_number;
     this.deviceID = this.user.user_metadata.device_id;
-  }
+  },
 };
 </script>
 
@@ -208,6 +242,10 @@ export default {
 
   justify-items: center;
   align-items: center;
+
+  h4 {
+    font-size: 16px;
+  }
 }
 
 .fields {
