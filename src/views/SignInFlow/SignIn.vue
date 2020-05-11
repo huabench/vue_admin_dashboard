@@ -5,7 +5,7 @@
     <div class="login">
       <img src="@/assets/DCHQ.svg" v-show="isDarkMode" />
       <img src="@/assets/DCHQ-dark.svg" v-show="!isDarkMode" />
-      <h4 :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}">Sign into Design+Code HQ</h4>
+      <h4 :class="{'light-text': !isDarkMode, 'dark-text': isDarkMode}">Sign into Baby Mattress</h4>
       <form @submit.prevent="onSubmit">
         <input
           type="email"
@@ -101,5 +101,31 @@ export default {
 
 .login {
   width: 400px;
+  @media (max-width: 600px) {
+    width: 70%;
+
+    img {
+      margin-top: 60px;
+      width: 120px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+
+    input {
+      font-size: 18px;
+      height: 40px;
+    }
+
+    button {
+      height: 40px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    a {
+      font-size: 16px;
+    }
+  }
 }
 </style>

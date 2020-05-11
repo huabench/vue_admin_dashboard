@@ -50,7 +50,7 @@ export default {
 
 .toggle.small {
   width: 100px;
-  margin: 0px auto;
+  margin: 0px;
   border-radius: 5px;
 }
 
@@ -69,6 +69,8 @@ export default {
 
 .toggle-switch {
   margin: 2px;
+  display: flex;
+  justify-content: center;
 }
 
 .toggle-switch.big {
@@ -91,5 +93,18 @@ export default {
   transform: translateX(90%);
   background: #1b233f;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+  .toggle.big {
+    width: 120px;
+    margin: 20px auto 0 auto;
+    border-radius: 10px;
+  }
+
+  .toggle-switch.big {
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
 }
 </style>

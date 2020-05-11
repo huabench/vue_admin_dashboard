@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/Team.vue";
+import Setting from "../views/Setting.vue";
 import SignIn from "../views/SignInFlow/SignIn";
 import Request from "../views/SignInFlow/Request";
 import Recover from "../views/SignInFlow/Recover";
@@ -15,49 +15,48 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
   {
-    path: "/team",
-    name: "Team",
-    component: About,
+    path: "/setting",
+    name: "Setting",
+    component: Setting,
     meta: {
-      requiresAuth: true
-    }
+      requiresAuth: true,
+    },
   },
   {
     path: "/signIn",
     name: "SignIn",
-    component: SignIn
+    component: SignIn,
   },
   {
     path: "/request",
     name: "Request",
-    component: Request
+    component: Request,
   },
   {
     path: "/recover",
     name: "Recover",
-    component: Recover
-  }
+    component: Recover,
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 router.beforeEach((to, from, next) => {
   const currentUser = netlifyIndentityWidget.currentUser();
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   if (requiresAuth && !currentUser) {
     next("signIn");
-  }
-  else {
+  } else {
     next();
   }
-})
+});
 
 export default router;

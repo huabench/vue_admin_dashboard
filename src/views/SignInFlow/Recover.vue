@@ -75,5 +75,31 @@ export default {
 
 .login {
   width: 400px;
+  @media (max-width: 600px) {
+    width: 70%;
+
+    img {
+      margin-top: 60px;
+      width: 120px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+
+    input {
+      font-size: 18px;
+      height: 40px;
+    }
+
+    button {
+      height: 40px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    a {
+      font-size: 16px;
+    }
+  }
 }
 </style>

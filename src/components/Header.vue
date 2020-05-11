@@ -5,15 +5,13 @@
         <img src="@/assets/DCHQ-small-dark.svg" v-show="!isDarkMode" />
         <img src="@/assets/DCHQ-small.svg" v-show="isDarkMode" />
         <router-link to="/" :class="{'light-nav': isDarkMode, '': !isDarkMode}">Home</router-link>
-        <router-link to="/manage" :class="{'light-nav': isDarkMode, '': !isDarkMode}">Manage Users</router-link>
-        <router-link to="/team" :class="{'light-nav': isDarkMode, '': !isDarkMode}">Team</router-link>
+        <router-link to="/setting" :class="{'light-nav': isDarkMode, '': !isDarkMode}">Setting</router-link>
       </div>
       <div class="nav-1">
         <a @click="onClick" class="logout">
           Logout
           <img src="@/assets/logout.svg" />
         </a>
-        <ThemeSwitch size="small" />
       </div>
     </div>
   </div>
@@ -21,13 +19,10 @@
 
 <script>
 import { auth } from "@/main";
-import ThemeSwitch from "@/components/ThemeSwitch";
 
 export default {
   name: "Header",
-  components: {
-    ThemeSwitch
-  },
+  components: {},
   computed: {
     isDarkMode() {
       return this.$store.getters.isDarkMode;
@@ -68,8 +63,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
   box-sizing: border-box;
+  width: 100%;
   padding: 15px 15%;
   a {
     font-weight: bold;
@@ -82,10 +77,18 @@ export default {
       color: $white;
     }
   }
+
+  @media (max-width: 720px) {
+    padding: 5px 20px;
+    a {
+      font-size: 12px;
+    }
+  }
 }
 
 .nav-1 {
   display: flex;
+  flex-direction: row;
   align-items: center;
 
   a {
@@ -95,10 +98,24 @@ export default {
 
   img {
     margin-right: 20px;
+    margin-left: 5px;
+  }
+  @media (max-width: 720px) {
+    a {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    img {
+      margin-right: 10px;
+      margin-left: 5px;
+    }
   }
 }
 
 .logout {
+  display: flex;
+  align-items: center;
   &:hover {
     cursor: pointer;
   }
