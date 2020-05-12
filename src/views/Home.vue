@@ -60,9 +60,13 @@ export default {
           this.ESPData = response.data;
         }
       };
-      xhttp.open("GET", "/.netlify/functions/getDataFromEsp", true);
-      xhttp.setRequestHeader("Access-Control-Allow-Origin", "origin-list");
-      xhttp.send();
+      //xhttp.open("GET", "/.netlify/functions/getDataFromEsp", true);
+      //xhttp.send();
+      fetch("/.netlify/functions/getDataFromEsp", {
+        method: "GET"
+      })
+        .then(response => console("response is :", response))
+        .catch(err => alert("err is:", err));
       this.updateGrid();
     },
     updateGrid() {
