@@ -70,9 +70,9 @@ export default {
   mounted() {
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
     this.updateGrid();
-    /*setInterval(function() {
+    setInterval(function() {
       this.getEspData();
-    }, 10);*/
+    }, 10);
   },
 
   data() {
@@ -117,7 +117,7 @@ export default {
     },
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
-      this.ESPData = "T1F2T3F4";
+      //this.ESPData = "T1F2T3F4";
       var count = 0;
       for (var i = 0; i < 4; i++) {
         var isTouched = this.ESPData.substring(2 * i, 2 * i + 1);
