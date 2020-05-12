@@ -8,6 +8,6 @@ exports.handler = function(event, context, callback) {
   //const data = "de";
   return callback(null, {
     statusCode: 200,
-    body: JSON.stringify({ data: espdata }),
+    body: espdata,
   });
 };

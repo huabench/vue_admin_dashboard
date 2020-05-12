@@ -64,7 +64,7 @@ export default {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
           console.log("response is:", response);
-          parent.ESPData = JSON.parse(response).data;
+          parent.ESPData = response;
           parent.updateGrid();
         } else {
           alert("error");
