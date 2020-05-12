@@ -6,7 +6,7 @@
         <p
           :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode}"
           id="battry-number"
-        >{{this.battery}}</p>
+        >{{this.battery}}%</p>
         <div
           class="battery-border"
           :class="{ 'dark-battery': !isDarkMode, 'light-battery': isDarkMode}"
@@ -111,7 +111,7 @@ export default {
   mounted() {
     var parent = this;
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
-    //this.updateGrid();
+    this.updateGrid();
     setInterval(function() {
       parent.getEspData();
     }, 1000);
@@ -120,7 +120,7 @@ export default {
   data() {
     return {
       ESPData: "",
-      battery: "100%",
+      battery: "20",
       statusText: "Your baby might leaving the mattress, please have a look.",
       statusTitle: "NOT ON"
     };
@@ -163,6 +163,12 @@ export default {
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
       //this.ESPData = "TFTFTFTFF";
+      const batteryPercent = parseInt((83 * this.battery) / 100);
+      document.getElementById("battery-box").style.width =
+        String(batteryPercent) + "%";
+      if (batteryPercent < 40) {
+        document.getElementById("battery-box").style.backgroundColor = "red";
+      }
       var count = 0;
       for (var i = 0; i < 9; i++) {
         var isTouched = this.ESPData.substring(i, i + 1);
