@@ -3,10 +3,16 @@
     <Header />
     <div class="container">
       <div class="battery">
-        <img
+        <p
+          :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode}"
+          id="battry-number"
+        >{{this.battery}}</p>
+        <div
+          class="battery-border"
           :class="{ 'dark-battery': !isDarkMode, 'light-battery': isDarkMode}"
-          src="@/assets/battery.svg"
-        />
+        >
+          <div id="battery-box" :class="{ 'dark-Box': !isDarkMode, 'light-Box': isDarkMode}"></div>
+        </div>
       </div>
       <div class="Input" :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }">
         <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">{{this.statusTitle}}</h4>
@@ -114,6 +120,7 @@ export default {
   data() {
     return {
       ESPData: "",
+      battery: "100%",
       statusText: "Your baby might leaving the mattress, please have a look.",
       statusTitle: "NOT ON"
     };
@@ -142,10 +149,11 @@ export default {
       var parent = this;
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-          var response = xhttp.responseText;
+          var response = JSON.parse(xhttp.responseText);
           //response = "TFTFTFTFF";
           //console.log("response is:", response);
-          parent.ESPData = response;
+          parent.ESPData = response.data;
+          parent.battery = response.battery;
           parent.updateGrid();
         }
       };
@@ -239,22 +247,51 @@ h1.white {
 
 .battery {
   display: flex;
-  justify-content: right;
-  position: relative;
-  margin-top: 10px;
+  flex-direction: row;
+  float: right;
+  align-items: center;
+  margin-bottom: 10px;
   img {
     width: 24px;
-    position: absolute;
-    right: 0;
     fill: white;
+    margin-left: 6px;
+  }
+  p {
+    font-size: 14px;
+    margin: 0;
   }
 }
 
+.battery-border {
+  width: 32px;
+  height: 16px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-left: 3px;
+}
+
+#battery-box {
+  width: 83%;
+  height: 80%;
+  border-radius: 2px;
+  margin-left: 3px;
+}
+
 .dark-battery {
-  color: black;
+  border: 3px solid rgba(0, 0, 0, 0.8);
 }
 
 .light-battery {
-  color: white;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.dark-Box {
+  background: black;
+}
+
+.light-Box {
+  background: white;
 }
 </style>

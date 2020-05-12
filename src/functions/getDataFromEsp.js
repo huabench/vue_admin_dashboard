@@ -1,13 +1,16 @@
 var espdata = "default";
+var battery = "100";
 
 exports.handler = function(event, context, callback) {
   try {
-    const data = JSON.parse(event.body).data;
+    const jsonData = JSON.parse(event.body);
+    const data = jsonData.data;
+    const battery = jsonData.battery;
     espdata = data;
   } catch (e) {}
   //const data = "de";
   return callback(null, {
     statusCode: 200,
-    body: espdata,
+    body: JSON.stringify({ data: data, battery: battery }),
   });
 };
