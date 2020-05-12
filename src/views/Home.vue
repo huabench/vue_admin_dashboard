@@ -60,15 +60,14 @@ export default {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
           console.log("response is:", response);
-
           this.ESPData = response.data;
+          this.updateGrid();
         } else {
           alert("error");
         }
       };
       xhttp.open("GET", "/.netlify/functions/getDataFromEsp", true);
       xhttp.send();
-      this.updateGrid();
     },
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
