@@ -28,6 +28,9 @@ export default {
 
   mounted() {
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
+    var response = `{"data":"this is a message from esp8266"}`;
+    const s = JSON.parse(response);
+    console.log(s.data);
   },
 
   data() {
@@ -61,7 +64,7 @@ export default {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
           console.log("response is:", response);
-          parent.ESPData = response.data;
+          parent.ESPData = JSON.parse(response).data;
           parent.updateGrid();
         } else {
           alert("error");
