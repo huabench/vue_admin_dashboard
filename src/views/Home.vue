@@ -60,8 +60,8 @@ export default {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
           console.log("response is:", response);
-          this.ESPData = response.data;
-          this.updateGrid();
+          self.ESPData = response.data;
+          self.updateGrid();
         } else {
           alert("error");
         }
