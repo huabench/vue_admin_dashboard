@@ -56,7 +56,7 @@ export default {
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
-          var response = JSON.parse(xhttp.responseText);
+          var response = xhttp.responseText;
           this.ESPData = response.data;
         }
       };
