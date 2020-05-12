@@ -47,7 +47,9 @@ export default {
       fetch("/.netlify/functions/sendSMS", {
         method: "POST",
         body: JSON.stringify(bodyObject)
-      });
+      })
+        .then(response => console("response is :", response))
+        .catch(err => alert("err is:", err));
     },
     getEspData() {
       console.log("get data from esp8266");
