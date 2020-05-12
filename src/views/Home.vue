@@ -56,12 +56,13 @@ export default {
       //fetch("/.netlify/functions/getDataFromEsp", {
       //fetch("http://localhost:9000/getDataFromEsp", {
       var xhttp = new XMLHttpRequest();
+      var parent = self;
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
           console.log("response is:", response);
-          self.ESPData = response.data;
-          self.updateGrid();
+          parent.ESPData = response.data;
+          parent.updateGrid();
         } else {
           alert("error");
         }
