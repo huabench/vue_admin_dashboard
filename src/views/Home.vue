@@ -2,6 +2,12 @@
   <div class="home">
     <Header />
     <div class="container">
+      <div class="battery">
+        <img
+          :class="{ 'dark-battery': !isDarkMode, 'light-battery': isDarkMode}"
+          src="@/assets/battery.svg"
+        />
+      </div>
       <div class="Input" :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }">
         <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">{{this.statusTitle}}</h4>
         <p :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">{{this.statusText}}</p>
@@ -192,5 +198,26 @@ h1.white {
   p {
     margin: 0;
   }
+}
+
+.battery {
+  display: flex;
+  justify-content: right;
+  position: relative;
+  margin-top: 10px;
+  img {
+    width: 24px;
+    position: absolute;
+    right: 0;
+    fill: white;
+  }
+}
+
+.dark-battery {
+  color: black;
+}
+
+.light-battery {
+  color: white;
 }
 </style>
