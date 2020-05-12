@@ -56,7 +56,7 @@ export default {
       //fetch("/.netlify/functions/getDataFromEsp", {
       //fetch("http://localhost:9000/getDataFromEsp", {
       var xhttp = new XMLHttpRequest();
-      var parent = self;
+      var parent = this;
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
