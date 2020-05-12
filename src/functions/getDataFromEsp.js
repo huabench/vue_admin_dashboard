@@ -1,7 +1,13 @@
+var espdata = "default";
+
 exports.handler = function(event, context, callback) {
-  const { data } = JSON.parse(event.body);
+  try {
+    const data = JSON.parse(event.body).data;
+    espdata = data;
+  } catch (e) {}
+  //const data = "de";
   callback(null, {
     statusCode: 200,
-    body: "Hello, World the data: " + data,
+    body: JSON.stringify({ data: espdata }),
   });
 };
