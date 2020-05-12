@@ -143,7 +143,7 @@ export default {
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
-          response = "TFTFTFTFF";
+          //response = "TFTFTFTFF";
           //console.log("response is:", response);
           parent.ESPData = response;
           parent.updateGrid();
