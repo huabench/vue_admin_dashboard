@@ -59,7 +59,11 @@ export default {
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
+          console.log("response is:", response);
+
           this.ESPData = response.data;
+        } else {
+          alert("error");
         }
       };
       xhttp.open("GET", "/.netlify/functions/getDataFromEsp", true);
