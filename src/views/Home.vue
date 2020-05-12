@@ -43,35 +43,35 @@
           <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">4</p>
         </div>
         <div
-          id="grid-1"
+          id="grid-5"
           class="grid"
           :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
         >
           <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">5</p>
         </div>
         <div
-          id="grid-1"
+          id="grid-6"
           class="grid"
           :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
         >
           <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">6</p>
         </div>
         <div
-          id="grid-1"
+          id="grid-7"
           class="grid"
           :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
         >
           <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">7</p>
         </div>
         <div
-          id="grid-1"
+          id="grid-8"
           class="grid"
           :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
         >
           <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">8</p>
         </div>
         <div
-          id="grid-1"
+          id="grid-9"
           class="grid"
           :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
         >
@@ -104,7 +104,7 @@ export default {
 
   mounted() {
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
-    this.updateGrid();
+    //this.updateGrid();
     setInterval(function() {
       this.getEspData();
     }, 10);
@@ -152,7 +152,7 @@ export default {
     },
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
-      //this.ESPData = "T1F2T3F4";
+      //this.ESPData = "T1F2T3F4T5F6T7F8F9";
       var count = 0;
       for (var i = 0; i < 9; i++) {
         var isTouched = this.ESPData.substring(2 * i, 2 * i + 1);
