@@ -154,7 +154,7 @@ export default {
     },
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
-      this.ESPData = "TFTFTFTFF";
+      //this.ESPData = "TFTFTFTFF";
       var count = 0;
       for (var i = 0; i < 9; i++) {
         var isTouched = this.ESPData.substring(i, i + 1);
