@@ -103,10 +103,11 @@ export default {
   },
 
   mounted() {
+    var parent = this;
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
     //this.updateGrid();
     setInterval(function() {
-      this.getEspData();
+      parent.getEspData();
     }, 10);
   },
 
