@@ -42,6 +42,41 @@
         >
           <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">4</p>
         </div>
+        <div
+          id="grid-1"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">5</p>
+        </div>
+        <div
+          id="grid-1"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">6</p>
+        </div>
+        <div
+          id="grid-1"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">7</p>
+        </div>
+        <div
+          id="grid-1"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">8</p>
+        </div>
+        <div
+          id="grid-1"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">9</p>
+        </div>
       </div>
 
       <button v-on:click="sendMessage">send msg</button>
@@ -119,7 +154,7 @@ export default {
       console.log("haha I got data:" + this.ESPData);
       //this.ESPData = "T1F2T3F4";
       var count = 0;
-      for (var i = 0; i < 4; i++) {
+      for (var i = 0; i < 9; i++) {
         var isTouched = this.ESPData.substring(2 * i, 2 * i + 1);
         if (isTouched == "T") {
           document.getElementById(
@@ -135,7 +170,7 @@ export default {
           this.statusTitle = "NOT ON";
           this.statusText =
             "Your baby might leaving the mattress, please have a look.";
-        } else if (count == 4) {
+        } else if (count > 6) {
           this.statusTitle = "ON";
           this.statusText = "Your baby is on the mattress, safe and sound.";
         } else {
@@ -179,7 +214,7 @@ h1.white {
 
 .Grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   margin: 20px auto;
   max-width: 600px;
@@ -190,7 +225,7 @@ h1.white {
 
 .grid {
   padding-left: 100%;
-  padding: 40%;
+  padding: 30%;
   border-radius: 10px;
   display: flex;
   justify-content: center;
