@@ -55,21 +55,15 @@ export default {
       console.log("get data from esp8266");
       //fetch("/.netlify/functions/getDataFromEsp", {
       //fetch("http://localhost:9000/getDataFromEsp", {
-      //var xhttp = new XMLHttpRequest();
-      /*xhttp.onreadystatechange = function() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
           this.ESPData = response.data;
         }
-      };*/
-      //xhttp.open("GET", "/.netlify/functions/getDataFromEsp", true);
-      //xhttp.send();
-      fetch("/.netlify/functions/getDataFromEsp", {
-        method: "POST",
-        body: "getdata"
-      })
-        .then(response => console("response is :", response))
-        .catch(err => alert("err is:", err));
+      };
+      xhttp.open("GET", "/.netlify/functions/getDataFromEsp", true);
+      xhttp.send();
       this.updateGrid();
     },
     updateGrid() {

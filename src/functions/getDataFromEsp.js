@@ -6,7 +6,7 @@ exports.handler = function(event, context, callback) {
     espdata = data;
   } catch (e) {}
   //const data = "de";
-  callback(null, {
+  return callback(null, {
     statusCode: 200,
     body: JSON.stringify({ data: espdata }),
   });
