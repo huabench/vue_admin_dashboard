@@ -108,7 +108,7 @@ export default {
     //this.updateGrid();
     setInterval(function() {
       parent.getEspData();
-    }, 10);
+    }, 1000);
   },
 
   data() {
@@ -143,6 +143,7 @@ export default {
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
+          response = "TFTFTFTFF";
           //console.log("response is:", response);
           parent.ESPData = response;
           parent.updateGrid();
@@ -153,16 +154,16 @@ export default {
     },
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
-      //this.ESPData = "T1F2T3F4T5F6T7F8F9";
+      this.ESPData = "TFTFTFTFF";
       var count = 0;
       for (var i = 0; i < 9; i++) {
-        var isTouched = this.ESPData.substring(2 * i, 2 * i + 1);
+        var isTouched = this.ESPData.substring(i, i + 1);
         if (isTouched == "T") {
           document.getElementById(
             "grid-" + String(i + 1)
           ).style.backgroundColor = "#56ccf2";
           count += 1;
-        } else {
+        } else if (isTouched == "F") {
           document.getElementById(
             "grid-" + String(i + 1)
           ).style.backgroundColor = !this.isDarkMode ? "#e3f2fd" : "white";
