@@ -262,7 +262,7 @@ export default {
 
 @media (max-width: 600px) {
   button {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .field {
