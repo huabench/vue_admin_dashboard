@@ -160,4 +160,40 @@ a {
   background: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.Input {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin: 20px auto;
+  max-width: 500px;
+  width: 70%;
+  border-radius: 10px;
+  padding: 20px;
+
+  h4 {
+    align-self: start;
+    line-height: 20px;
+    justify-self: center;
+  }
+
+  p {
+    font-size: 10px;
+    margin: 10px 0 0 0;
+    align-self: start;
+    line-height: 10px;
+    margin-bottom: 0;
+    justify-self: start;
+  }
+}
+
+.light-input {
+  background: $white;
+  box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.dark-input {
+  background: $super-dark-blue;
+  box-shadow: 0px 15px 30px rgba(255, 255, 255, 0.15);
+}
 </style>

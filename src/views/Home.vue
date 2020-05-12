@@ -2,6 +2,42 @@
   <div class="home">
     <Header />
     <div class="container">
+      <div class="Input" :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }">
+        <h4 :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">{{this.statusTitle}}</h4>
+        <p :class="{ 'light-text': !isDarkMode, 'dark-text': isDarkMode }">{{this.statusText}}</p>
+      </div>
+
+      <div class="Grid" :class="{ 'dark-input': isDarkMode, 'light-input': !isDarkMode }">
+        <div
+          id="grid-1"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">1</p>
+        </div>
+        <div
+          id="grid-2"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">2</p>
+        </div>
+        <div
+          id="grid-3"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">3</p>
+        </div>
+        <div
+          id="grid-4"
+          class="grid"
+          :class="{ 'dark-grid': !isDarkMode, 'light-grid': isDarkMode }"
+        >
+          <p :class="{ 'light-text': isDarkMode, 'dark-text': !isDarkMode }">4</p>
+        </div>
+      </div>
+
       <button v-on:click="sendMessage">send msg</button>
       <button v-on:click="getEspData">get data</button>
     </div>
@@ -28,14 +64,14 @@ export default {
 
   mounted() {
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
-    var response = `{"data":"this is a message from esp8266"}`;
-    const s = JSON.parse(response);
-    console.log(s.data);
+    this.updateGrid();
   },
 
   data() {
     return {
-      ESPData: null
+      ESPData: "",
+      statusText: "Your baby might leaving the mattress, please have a look.",
+      statusTitle: "NOT ON"
     };
   },
 
@@ -63,11 +99,9 @@ export default {
       xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
           var response = xhttp.responseText;
-          console.log("response is:", response);
+          //console.log("response is:", response);
           parent.ESPData = response;
           parent.updateGrid();
-        } else {
-          alert("error");
         }
       };
       xhttp.open("GET", "/.netlify/functions/getDataFromEsp", true);
@@ -75,6 +109,15 @@ export default {
     },
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
+      //this.ESPData = "T1F2T3F4";
+      for (var i = 0; i < 4; i++) {
+        var isTouched = this.ESPData.substring(2 * i, 2 * i + 1);
+        if (isTouched == "T") {
+          document.getElementById(
+            "grid-" + String(i + 1)
+          ).style.backgroundColor = "#56ccf2";
+        }
+      }
     }
   }
 };
@@ -85,11 +128,49 @@ export default {
   margin-right: 15%;
 }
 
+.red {
+  h4,
+  p {
+    color: red;
+  }
+}
+
 h1.black {
   @include heading-3($black);
 }
 
 h1.white {
   @include heading-3($white);
+}
+
+.light-grid {
+  background: $white;
+}
+
+.dark-grid {
+  background: #e3f2fd;
+}
+
+.Grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  width: 80%;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.grid {
+  padding-left: 100%;
+  padding: 40%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    margin: 0;
+  }
 }
 </style>
