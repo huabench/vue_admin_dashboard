@@ -175,6 +175,7 @@ export default {
 
   h4 {
     font-size: 16px;
+    align-self: center;
   }
 }
 
@@ -183,6 +184,11 @@ export default {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   row-gap: 15px;
+}
+
+.field {
+  font-size: 16px;
+  padding-left: 20px;
 }
 
 .field-1 {
@@ -206,6 +212,7 @@ export default {
 
   .account {
     font-size: 14px;
+    align-items: center;
   }
 }
 </style>

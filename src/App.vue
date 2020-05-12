@@ -180,10 +180,11 @@ a {
   p {
     font-size: 10px;
     margin: 10px 0 0 0;
-    align-self: start;
-    line-height: 10px;
+    display: inline-block;
+    text-align: left;
+    line-height: 16px;
     margin-bottom: 0;
-    justify-self: start;
+    word-break: keep-all;
   }
 }
 

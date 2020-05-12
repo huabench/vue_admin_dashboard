@@ -39,7 +39,6 @@
       </div>
 
       <button v-on:click="sendMessage">send msg</button>
-      <button v-on:click="getEspData">get data</button>
     </div>
   </div>
 </template>
@@ -65,6 +64,9 @@ export default {
   mounted() {
     this.phoneNumber = auth.currentUser().user_metadata.phone_number;
     this.updateGrid();
+    /*setInterval(function() {
+      this.getEspData();
+    }, 10);*/
   },
 
   data() {
@@ -109,13 +111,31 @@ export default {
     },
     updateGrid() {
       console.log("haha I got data:" + this.ESPData);
-      //this.ESPData = "T1F2T3F4";
+      this.ESPData = "T1F2T3F4";
+      var count = 0;
       for (var i = 0; i < 4; i++) {
         var isTouched = this.ESPData.substring(2 * i, 2 * i + 1);
         if (isTouched == "T") {
           document.getElementById(
             "grid-" + String(i + 1)
           ).style.backgroundColor = "#56ccf2";
+          count += 1;
+        } else {
+          document.getElementById(
+            "grid-" + String(i + 1)
+          ).style.backgroundColor = !this.isDarkMode ? "#e3f2fd" : "white";
+        }
+        if (count == 0) {
+          this.statusTitle = "NOT ON";
+          this.statusText =
+            "Your baby might leaving the mattress, please have a look.";
+        } else if (count == 4) {
+          this.statusTitle = "ON";
+          this.statusText = "Your baby is on the mattress, safe and sound.";
+        } else {
+          this.statusTitle = "PARTIALLY ON";
+          this.statusText =
+            "Your baby is partially on the mattress, playing around.";
         }
       }
     }
